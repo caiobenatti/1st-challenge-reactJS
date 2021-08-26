@@ -32,12 +32,18 @@ export function TaskList() {
 
   function handleToggleTaskCompletion(id: number) {
     // Altere entre `true` ou `false` o campo `isComplete` de uma task com dado ID
-   
+    const taskToToggle = tasks.map(task => task.id === id ? {
+      ...task,
+      isComplete: !task.isComplete
+    } : task)
+
+    setTasks(taskToToggle)
   }
 
   function handleRemoveTask(id: number) {
     // Remova uma task da listagem pelo ID
-
+    const taskToRemove = tasks.filter(task => task.id != id); //dizendo que nao eh o id, ele cria uma nova variavel sem o id que vc quer usar, sendo assim quando vc clicka, ele remove aquele item.
+    setTasks(taskToRemove) // setando o id quando vc acha ele para o estado ele remove o item que tem o id que vc clicka.
   }
 
   return (
