@@ -15,23 +15,29 @@ export function TaskList() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [newTaskTitle, setNewTaskTitle] = useState('');
 
-  function handleCreateNewTask(props: Task) {
+  function handleCreateNewTask() {
     // Crie uma nova task com um id random, não permita criar caso o título seja vazio.
-    let counter = 0;
-    setTasks({
-      id: counter+1,
-      title: props.title,
+    if (!newTaskTitle) return;
+    
+    const newTask ={
+      id: Math.random(),
+      title: newTaskTitle,
       isComplete: false
-    })
+    } //cria um componente temporario para segurar os dados passados pela funcao, essa funcao eh usada pelo estado do react por isso a falta de argumento
+
+    setTasks(oldState => [...oldState, newTask])
+    setNewTaskTitle('')
+    
   }
 
   function handleToggleTaskCompletion(id: number) {
     // Altere entre `true` ou `false` o campo `isComplete` de uma task com dado ID
-    return 
+   
   }
 
   function handleRemoveTask(id: number) {
     // Remova uma task da listagem pelo ID
+
   }
 
   return (
